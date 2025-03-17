@@ -7,6 +7,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import reactor.netty.udp.UdpServer;
 
+import java.util.Arrays;
+
 @Component
 public class Instantiation implements CommandLineRunner {
 
@@ -20,9 +22,12 @@ public class Instantiation implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        userRepository.deleteAll();
+
         User maria = new User(null, "maria", "maria@gmail.com");
         User alex = new User(null, "alex", "alex@gmail.com");
         User bob = new User(null, "bob", "bob@gmail.com");
 
+        userRepository.saveAll(Arrays.asList(maria, alex, bob));
     }
 }
